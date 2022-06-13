@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Appearance } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,6 +15,7 @@ import {
   DefaultTheme as NavigationTheme,
 } from '@react-navigation/native';
 import { PreferencesContext } from './src/state/global-state';
+import { readData, storeData } from './src/utils/storage';
 
 export type RootStackProps = {
   Home: undefined;
@@ -54,7 +55,7 @@ const DarkTheme = {
 };
 
 const App = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(
     Appearance.getColorScheme() === 'dark' ? true : false,
   );
 
@@ -69,6 +70,39 @@ const App = () => {
     }),
     [toggleTheme, isDarkTheme],
   );
+
+  useEffect(() => {
+    const setIsDarkThemeFromAsyncStorage = async () => {
+      try {
+        const darkThemeEnabled = await readData('DarkThemeEnabled');
+
+        if (!darkThemeEnabled) {
+          await storeData(
+            'DarkThemeEnabled',
+            Appearance.getColorScheme() === 'dark' ? true : false,
+          );
+        }
+
+        setIsDarkTheme(JSON.parse(darkThemeEnabled as string));
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+
+    setIsDarkThemeFromAsyncStorage();
+  }, []);
+
+  useEffect(() => {
+    const updateAsyncStorage = async () => {
+      try {
+        await storeData('DarkThemeEnabled', isDarkTheme);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+
+    updateAsyncStorage();
+  }, [isDarkTheme]);
 
   return (
     <PreferencesContext.Provider value={preferences}>
