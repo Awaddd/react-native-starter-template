@@ -16,6 +16,7 @@ import {
 } from '@react-navigation/native';
 import { PreferencesContext } from './src/state/global-state';
 import { readData, storeData } from './src/utils/storage';
+import RNBootSplash from 'react-native-bootsplash';
 
 export type RootStackProps = {
   Home: undefined;
@@ -89,7 +90,17 @@ const App = () => {
       }
     };
 
-    setIsDarkThemeFromAsyncStorage();
+    const initialise = async () => {
+      await setIsDarkThemeFromAsyncStorage();
+      await new Promise(resolve => {
+        setTimeout(resolve, 2000);
+      });
+    };
+
+    initialise().finally(async () => {
+      await RNBootSplash.hide({ fade: true });
+      console.log('splash screen hidden successfully');
+    });
   }, []);
 
   useEffect(() => {
