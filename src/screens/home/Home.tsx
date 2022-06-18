@@ -9,8 +9,6 @@ import styled from '../../utils/Styled';
 import { useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-Icon.loadFont();
-
 export type TabProps = {
   Tab1: undefined;
   Tab2: undefined;

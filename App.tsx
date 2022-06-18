@@ -17,6 +17,9 @@ import {
 import { PreferencesContext } from './src/state/global-state';
 import { readData, storeData } from './src/utils/storage';
 import RNBootSplash from 'react-native-bootsplash';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+Icon.loadFont();
 
 export type RootStackProps = {
   Home: undefined;
@@ -99,7 +102,6 @@ const App = () => {
 
     initialise().finally(async () => {
       await RNBootSplash.hide({ fade: true });
-      console.log('splash screen hidden successfully');
     });
   }, []);
 

@@ -1,22 +1,32 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Title, useTheme } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { IconButton, Title, useTheme } from 'react-native-paper';
 import Container from '../../containers/TabContainer';
 import styled from '../../utils/Styled';
 import { spacing } from '../../utils/theme';
 import Header from '../../components/Header';
+import { useNavigation } from '@react-navigation/native';
+import { HomeProps } from './Home';
 
 const Tab1 = () => {
   const theme = useTheme();
+  const { navigate } = useNavigation<HomeProps>();
+
   return (
     <Container>
-      <Header name="Tab 2" />
+      <Header
+        name="Home"
+        icon={
+          <IconButton
+            icon="cog"
+            color={theme.colors.text}
+            size={21}
+            onPress={() => navigate('Settings')}
+          />
+        }
+      />
       <Main>
         <MainTitle color={theme.colors.text}>Tab 2</MainTitle>
-        <Icon name="moon-full" color={theme.colors.primary} />
-        <Icon name="moon-full" color={theme.colors.error} />
-        <Icon name="moon-full" color={theme.colors.accent} />
       </Main>
     </Container>
   );
