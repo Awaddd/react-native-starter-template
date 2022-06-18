@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { StatusBar, View, SafeAreaView } from 'react-native';
-import { useTheme } from 'react-native-paper';
 import { PreferencesContext } from '../state/global-state';
 import styled from '../utils/Styled';
-import { GLOBAL_PAGE_PADDING } from '../utils/theme';
+import { GLOBAL_PAGE_PADDING, useTheme } from '../utils/theme';
 
 const Container = ({ children }: { children?: React.ReactNode }) => {
   const theme = useTheme();

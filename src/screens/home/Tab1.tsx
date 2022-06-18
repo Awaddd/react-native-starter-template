@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
-import { IconButton, Title, useTheme } from 'react-native-paper';
+import { useWindowDimensions, View } from 'react-native';
+import { Avatar, IconButton, Title } from 'react-native-paper';
 import Container from '../../containers/TabContainer';
 import styled from '../../utils/Styled';
-import { spacing } from '../../utils/theme';
+import { spacing, useTheme } from '../../utils/theme';
 import Header from '../../components/Header';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,6 +11,7 @@ import { HomeProps } from './Home';
 
 const Tab1 = () => {
   const theme = useTheme();
+  const { width } = useWindowDimensions();
 
   const { navigate } = useNavigation<HomeProps>();
 
@@ -29,6 +30,24 @@ const Tab1 = () => {
       />
       <Main>
         <MainTitle color={theme.colors.text}>Tab 1</MainTitle>
+        <Icons width={width}>
+          <TabIcon
+            size={40}
+            icon="dumbbell"
+            backgroundColor={theme.colors.primary}
+          />
+          <TabIcon size={40} icon="run" backgroundColor={theme.colors.accent} />
+          <TabIcon
+            size={40}
+            icon="bridge"
+            backgroundColor={theme.colors.accent2}
+          />
+          <TabIcon
+            size={40}
+            icon="treasure-chest"
+            backgroundColor={theme.colors.accent3}
+          />
+        </Icons>
       </Main>
     </Container>
   );
@@ -45,5 +64,14 @@ const MainTitle = styled(Title, ({ color }) => ({
   color,
   marginVertical: spacing.md,
 }));
+
+const Icons = styled(View, ({ width }) => ({
+  marginTop: spacing.rl,
+  width: width / 1.5,
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+}));
+
+const TabIcon = styled(Avatar.Icon, {});
 
 export default Tab1;

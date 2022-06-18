@@ -5,19 +5,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Home from './src/screens/home/Home';
 import Settings from './src/screens/settings/Settings';
-import {
-  DarkTheme as PaperDarkTheme,
-  DefaultTheme as PaperTheme,
-  Provider as PaperProvider,
-} from 'react-native-paper';
-import {
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationTheme,
-} from '@react-navigation/native';
+import { Provider as PaperProvider } from 'react-native-paper';
 import { PreferencesContext } from './src/state/global-state';
 import { readData, storeData } from './src/utils/storage';
 import RNBootSplash from 'react-native-bootsplash';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DarkTheme, DefaultTheme } from './src/utils/theme';
 
 Icon.loadFont();
 
@@ -33,30 +26,6 @@ const forFade = ({ current }: { current: any }) => ({
     opacity: current.progress,
   },
 });
-
-const DefaultTheme = {
-  ...PaperTheme,
-  ...NavigationTheme,
-  colors: {
-    ...PaperTheme.colors,
-    ...NavigationTheme.colors,
-    primary: '#004fff',
-    accent: '#FF007F',
-    error: '#f2385a',
-  },
-};
-
-const DarkTheme = {
-  ...PaperDarkTheme,
-  ...NavigationDarkTheme,
-  colors: {
-    ...PaperDarkTheme.colors,
-    ...NavigationDarkTheme.colors,
-    primary: '#004fff',
-    accent: '#FF007F',
-    error: '#f2385a',
-  },
-};
 
 const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(

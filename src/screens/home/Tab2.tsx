@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { IconButton, Title, useTheme } from 'react-native-paper';
+import { IconButton, Title } from 'react-native-paper';
 import Container from '../../containers/TabContainer';
 import styled from '../../utils/Styled';
-import { spacing } from '../../utils/theme';
+import { spacing, useTheme } from '../../utils/theme';
 import Header from '../../components/Header';
 import { useNavigation } from '@react-navigation/native';
 import { HomeProps } from './Home';

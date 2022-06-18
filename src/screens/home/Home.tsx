@@ -6,8 +6,8 @@ import { RootStackProps } from '../../../App';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import styled from '../../utils/Styled';
-import { useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTheme } from '../../utils/theme';
 
 export type TabProps = {
   Tab1: undefined;

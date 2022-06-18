@@ -1,4 +1,3 @@
-import { useTheme } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
@@ -7,7 +6,7 @@ import { RootStackProps } from '../../../App';
 import Container from '../../containers/Container';
 import styled from '../../utils/Styled';
 import { PreferencesContext } from '../../state/global-state';
-import { spacing } from '../../utils/theme';
+import { spacing, useTheme } from '../../utils/theme';
 import Header from '../../components/Header';
 
 type props = StackScreenProps<RootStackProps, 'Settings'>;
