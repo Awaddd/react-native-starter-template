@@ -5,6 +5,7 @@ yarn install && (cd ios && pod install) && yarn run ios
 # rename project completely
 - [ ] git clone https://github.com/Awaddd/react-native-starter-template.git
 - [ ] delete iOS and android folders
+- [ ] add this line to ./android/app/build.gradle to get icons working on android: apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 - [ ] delete git folder and git init
 - [ ] rename project name in package.json and app.json
 - [ ] regenerate folders: yarn add @react-native-community/cli && yarn add react-native-eject  && yarn react-native eject
